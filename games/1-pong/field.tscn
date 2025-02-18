@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1ihoh6ecrmul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hov6"]
+size = Vector2(200, 1080)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iiiyw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w6q6r"]
+b = Vector2(1920, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_82anx"]
+a = Vector2(0, 1080)
+b = Vector2(1920, 1080)
+
+[node name="Field" type="Node2D"]
+
+[node name="LeftScoringArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftScoringArea"]
+position = Vector2(-100, 540)
+shape = SubResource("RectangleShape2D_3hov6")
+
+[node name="RightScoringArea" type="Area2D" parent="."]
+position = Vector2(2120, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightScoringArea"]
+position = Vector2(-100, 540)
+shape = SubResource("RectangleShape2D_3hov6")
+
+[node name="PlayingField" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayingField"]
+shape = SubResource("WorldBoundaryShape2D_iiiyw")
+
+[node name="WallUp" type="StaticBody2D" parent="PlayingField"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayingField/WallUp"]
+shape = SubResource("SegmentShape2D_w6q6r")
+one_way_collision = true
+debug_color = Color(1.92523e-06, 0.514483, 0.601427, 0.42)
+
+[node name="WallDown" type="StaticBody2D" parent="PlayingField"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayingField/WallDown"]
+shape = SubResource("SegmentShape2D_82anx")
+debug_color = Color(0.573529, 0.54967, 0.212404, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="PlayingField"]
+offset_top = 1.0
+offset_right = 976.0
+offset_bottom = 1081.0
+color = Color(0.205117, 0.205117, 0.205117, 1)
