@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnrylplh00641"]
+[gd_scene load_steps=6 format=3 uid="uid://bnrylplh00641"]
 
 [ext_resource type="PackedScene" uid="uid://c1ihoh6ecrmul" path="res://field.tscn" id="1_dlv0j"]
 [ext_resource type="PackedScene" uid="uid://4ukxwvhbt8aj" path="res://player.tscn" id="2_hl1me"]
 [ext_resource type="PackedScene" uid="uid://cgso3743ao4xr" path="res://Ball.tscn" id="3_p2hak"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b8tg4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rlak3"]
+a = Vector2(1900, 0)
+b = Vector2(1900, 1100)
 
 [node name="Game" type="Node2D"]
 
@@ -13,3 +19,11 @@ position = Vector2(234, 521)
 
 [node name="Ball" parent="." instance=ExtResource("3_p2hak")]
 position = Vector2(832, 488)
+
+[node name="HardWall" type="RigidBody2D" parent="."]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_b8tg4")
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HardWall"]
+shape = SubResource("SegmentShape2D_rlak3")

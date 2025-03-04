@@ -10,12 +10,13 @@ radius = 15.0
 height = 150.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_o0vf8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 material = SubResource("CanvasItemMaterial_0rxy8")
 shape = SubResource("CapsuleShape2D_sgibb")
-one_way_collision = true
+one_way_collision_margin = 11.4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -13.0

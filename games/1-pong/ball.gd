@@ -1,28 +1,32 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-@export var initial_speed = 200
+@export var initial_speed = 20
+@export var hit_acceleration_factor = 1.1
+
+var current_speed = initial_speed
 
 func _ready():
 	# Set initial velocity
-	linear_velocity = Vector2(-initial_speed, initial_speed).normalized() * initial_speed
-	
-	# Disable gravity
-	gravity_scale = 0
-	
-	# Set bounce to 1 for perfect reflection
-	physics_material_override = PhysicsMaterial.new()
-	physics_material_override.bounce = 1.0
-	
+	self.velocity = Vector2(-initial_speed, 0).normalized() * current_speed
 
 
-func _physics_process(delta):
+func bounce_vector() -> Vector2:
+	return Vector2(sign(self.velocity.x) * -1, sign(self.velocity.y) * -1).normalized()
+
+func padel_bounce(_collision: KinematicCollision2D):
+	self.current_speed *= hit_acceleration_factor
+	self.velocity = self.bounce_vector() * self.current_speed
+
+func wall_bounce():
+	self.velocity = self.bounce_vector()
+
+func _physics_process(_delta):
 	# Maintain constant speed
-	linear_velocity = linear_velocity.normalized() * initial_speed
-	
-	# Prevent getting stuck in vertical movement
-	if abs(linear_velocity.y) > 0.95 * initial_speed:
-		linear_velocity.x = sign(linear_velocity.x) * initial_speed * 0.3
-
-func _on_body_entered(body):
-	# Add a small impulse on collision to prevent losing momentum
-	apply_central_impulse(linear_velocity.normalized() * 10)
+	self.velocity = velocity.normalized() * current_speed
+	var collision = self.move_and_collide(self.velocity)
+	if collision:
+		var collider = collision.get_collider()
+		if collider is CharacterBody2D:
+			self.padel_bounce(collision)
+		else:
+			self.wall_bounce()
