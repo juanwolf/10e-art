@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 400.0
+@export var color: Color = Color()
+
+func _draw() -> void:
+	$ColorRect.set_color(color)
 
 
 func _physics_process(delta: float) -> void:

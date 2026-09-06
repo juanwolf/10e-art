@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnrylplh00641"]
+
+[ext_resource type="Script" uid="uid://ccahf2ws0yu2c" path="res://Scenes/Game/game.gd" id="1_ln2h6"]
+[ext_resource type="PackedScene" uid="uid://c1ihoh6ecrmul" path="res://field.tscn" id="2_y3kpf"]
+[ext_resource type="PackedScene" uid="uid://4ukxwvhbt8aj" path="res://Scenes/Players/player.tscn" id="3_3k6gv"]
+[ext_resource type="PackedScene" uid="uid://cgso3743ao4xr" path="res://Scenes/Balls/Ball.tscn" id="4_1q8bt"]
+
+[node name="Game" type="Node2D" unique_id=726276416]
+script = ExtResource("1_ln2h6")
+
+[node name="Field" parent="." unique_id=215066855 instance=ExtResource("2_y3kpf")]
+
+[node name="Player" parent="." unique_id=1597516386 instance=ExtResource("3_3k6gv")]
+position = Vector2(234, 521)
+color = Color(0.84705883, 0, 0, 1)
+
+[node name="Ball" parent="." unique_id=1619761641 instance=ExtResource("4_1q8bt")]
+position = Vector2(832, 488)
+
+[node name="Player2" parent="." unique_id=1371994368 instance=ExtResource("3_3k6gv")]
+position = Vector2(1812, 514)
+color = Color(0, 0, 0.8156863, 1)

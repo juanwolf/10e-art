@@ -9,16 +9,22 @@ func _ready():
 	# Set initial velocity
 	self.velocity = Vector2(-initial_speed, 0).normalized() * current_speed
 
+func from_angle_to_vector2(angle: float) -> Vector2:
+	return Vector2(cos(angle), sin(angle))
 
 func bounce_vector() -> Vector2:
 	return Vector2(sign(self.velocity.x) * -1, sign(self.velocity.y) * -1).normalized()
 
-func padel_bounce(_collision: KinematicCollision2D):
+func padel_bounce(collision: KinematicCollision2D):
 	self.current_speed *= hit_acceleration_factor
-	self.velocity = self.bounce_vector() * self.current_speed
+	var angle = collision.get_angle(self.bounce_vector())
+	self.velocity = from_angle_to_vector2(angle) * self.current_speed
 
 func wall_bounce():
-	self.velocity = self.bounce_vector()
+	self.velocity = Vector2(self.velocity.x, self.velocity.y * -1)
+
+func back_wall_bounce():
+	self.velocity = Vector2(self.velocity.x * -1, self.velocity.y)
 
 func _physics_process(_delta):
 	# Maintain constant speed

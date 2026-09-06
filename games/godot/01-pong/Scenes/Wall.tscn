@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cn5obh3nvtcu5"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nkglm"]
+b = Vector2(1920, 0)
+
+[node name="Wall" type="Node2D" unique_id=1124695820]
+
+[node name="StaticBody" type="StaticBody2D" parent="." unique_id=245864873]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody" unique_id=1482258593]
+shape = SubResource("SegmentShape2D_nkglm")
+one_way_collision = true
+debug_color = Color(1.92523e-06, 0.514483, 0.601427, 0.42)

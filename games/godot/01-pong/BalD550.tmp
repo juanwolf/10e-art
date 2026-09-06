@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgso3743ao4xr"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_bhpqq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5a6ef"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xl7b3"]
+
+[node name="Ball" type="RigidBody2D"]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_5a6ef")
+gravity_scale = 0.0
+script = ExtResource("1_bhpqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xl7b3")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+offset_right = 15.0
+offset_bottom = 15.0
+color = Color(0.197964, 0.651623, 0.57377, 1)

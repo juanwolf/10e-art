@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://hq6h3qpynp0r"]
+
+[ext_resource type="Script" uid="uid://d2kge8hoy0ku4" path="res://Scenes/UI/ui.gd" id="1_s86y4"]
+
+[node name="UI" type="Node2D" unique_id=1465096949]
+script = ExtResource("1_s86y4")
+
+[node name="Player1Score" type="RichTextLabel" parent="." unique_id=1417069705]
+offset_left = 215.0
+offset_top = 1.0
+offset_right = 255.0
+offset_bottom = 41.0
+text = "0"
+fit_content = true
+
+[node name="Player2Score" type="RichTextLabel" parent="." unique_id=911376601]
+offset_left = 1030.0
+offset_top = 7.0
+offset_right = 1070.0
+offset_bottom = 47.0
+text = "0"
